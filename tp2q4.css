@@ -1,0 +1,246 @@
+membre
+{
+    display:block;
+    border-color:black;
+    border-style: solid; 
+    margin-left:15px;
+    width:85%;
+}
+membre::before
+{
+    counter-increment:membre;
+    content:"Membre #" counter(membre) ": ";
+    
+}
+livres::before
+{
+    content:"Livres";
+    font-size:30px;
+    color:blue;
+    font-weight: bold;
+}
+membres
+{
+     counter-reset:membre;
+}
+membres::before
+{
+    content:"Membres";
+    font-weight:bold;
+    font-size:30px;
+    
+
+}
+bibliotheque
+{
+    border-color:black;
+    border-style: solid; 
+    margin-left:15px;
+    
+}
+abonne
+{
+     
+     
+}
+reference
+{
+    display:block;
+    border-color:gray;
+    border-style: solid;
+    margin-left:25px;
+    width:95%;
+}
+reference::before
+{
+    content:"Reference: ";
+}
+telephone
+{
+    display:block; 
+    margin-left:35px;
+    
+}
+telephone::before
+{
+    content:"Telephone";
+    display: list-item;
+    list-style-type: circle;
+    list-style-position: inside;
+}
+maison
+{
+    display: list-item;
+    margin-left:25px;
+    list-style-type: square;
+    list-style-position: inside;
+}
+maison::before
+{
+    content:"maison: ";
+    
+}
+cellulaire
+{
+    display: list-item;
+    margin-left:25px;
+    list-style-type: square;
+    list-style-position: inside;
+}
+cellulaire::before
+{
+    content:"cellulaire: ";
+    
+}
+
+fax
+{
+    display: list-item;
+    margin-left:15px;
+    list-style-type: square;
+    list-style-position: inside;
+}
+fax::before
+{
+    content:"fax: ";
+}
+adresse
+{
+    display: list-item;
+    margin-left:35px;
+    list-style-type: circle;
+    list-style-position: inside;
+}
+
+livre
+{
+    display:block;
+    color:blue;
+    border-color:blue;
+    border-style:solid;
+    padding-top:10px;
+    margin-bottom:10px;
+    margin-left:18px;
+    width:85%;
+}
+date_naissance
+{
+    display: list-item;
+    margin-left:25px;
+    list-style-type: circle;
+    list-style-position: inside;
+}
+date_naissance::before
+{
+    content:"Naissance: ";
+}
+retards
+{
+    color:red;
+}
+retards::before
+{
+    content:"Retards: ";
+    margin-left:45px; 
+    display:block;
+}
+province
+{
+    display:block;
+    margin-left:25px;
+}
+code_postal
+{
+    display:block;
+    margin-left:25px;
+}
+ville
+{
+    display:block;
+    margin-left:25px;
+}
+rue::before
+{
+    content:"rue ";
+}
+/*  
+titre::before
+{
+    content:"Livre: ";
+    font-weight: bold;
+    font-size:25px;
+}
+ */
+livre_emprunt::before
+{
+    margin-left:45px;
+    content:"Emprunts Livres: " attr(livre_id) ;
+}
+date_prevue::before
+{
+    content:"<Date prevue: ";
+}
+date_retournee::before
+{
+    content:"<Date retournee: ";
+}
+date_prevue::after
+{
+    content:">";
+}
+date_retournee::after
+{
+    content:"> ";
+}
+livre_retard
+{
+    display: list-item;
+    margin-left:55px;
+    list-style-type: circle;
+    list-style-position: inside;
+    
+}
+livre_retard::before
+{
+    content: attr(livre_id) ;
+}
+
+montant::before
+{
+    content:"amende a payer: ";
+}
+montant::after
+{
+    content:"$";
+}
+auteur,isbn,cdrom,nb_pages,editor
+{
+    display: list-item;
+    list-style-type: circle;
+    list-style-position: inside;
+    margin-left:25px;
+}
+photo
+{
+    display:none;
+}
+editor::before
+{
+    content:"Editeur: ";    
+}
+isbn::before
+{
+    content:"ISBN: ";    
+}
+cdrom::before
+{
+    content:"CDR-OM: ";    
+}
+nb_pages::before
+{
+    content:"Nb.pages: ";    
+}
+auteur::before
+{
+    content:"Auteur: ";    
+}

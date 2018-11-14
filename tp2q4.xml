@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+
+<!--
+Travail TP2 numero 3
+IFT-1152
+Karl Rushford
+code permanent RUSK28078403
+matricule 20002954
+remise le 20 mars 2018
+
+-->
+
+<?xml-stylesheet type="text/css" href="tp2q4.css"?>
+
+<bibliotheque  xmlns="tp2q2.xsd">
+    <membres>
+        <membre>
+            <abonne>
+                <nom>Blo</nom>
+                <prenom>Jo</prenom>
+                <adresse>
+                    <numero>123</numero>
+                    <rue>Laval</rue>
+                    <ville>Montreal</ville>
+                    <code_postal>A0A0A0</code_postal>
+                    <province>QC</province>
+                </adresse>
+                <telephone>
+                    <maison>514-999-1235</maison>
+                    <cellulaire>514-999-1234</cellulaire>
+                    <!--fax></fax-->
+                </telephone>
+                <date_naissance>1990-05-04</date_naissance>
+            </abonne>
+            <reference>
+                <nom>Blo</nom>
+                <prenom>Joe</prenom>
+                <adresse>
+                    <numero>123</numero>
+                    <rue>Laval</rue>
+                    <ville>Montreal</ville>
+                    <code_postal>A0A0A0</code_postal>
+                    <province>QC</province>
+                </adresse>
+                <telephone>
+                    <maison>514-999-1237</maison>
+                    <cellulaire>514-999-1236</cellulaire>
+                    <!--fax></fax-->
+                </telephone>
+                <date_naissance>1990-08-04</date_naissance>				
+            </reference>
+            <!--emprunts>
+				<livre_emprunt livre_id="">
+					<date_prevue></date_prevue>
+					<date_retournee></date_retournee>
+				</livre_emprunt>
+			</emprunts-->
+            <retards>
+                <livre_retard livre_id="QA9123-1232-F">
+                    <date_prevue>2009-08-02</date_prevue>
+                    <date_retournee>2009-08-12</date_retournee>
+                    <montant>1.00</montant>
+                </livre_retard>
+                <livre_retard livre_id="QA9123-1232-F">
+                    <date_prevue>2009-08-22</date_prevue>
+                    <date_retournee>2009-08-25</date_retournee>
+                    <montant>0.30</montant>
+                </livre_retard>
+            </retards>
+        </membre>
+        <membre>
+            <abonne>
+                <nom>Toto</nom>
+                <prenom>Titi</prenom>
+                <adresse>
+                    <numero>199</numero>
+                    <rue>rue2</rue>
+                    <ville>ville2</ville>
+                    <code_postal>A0A0A0</code_postal>
+                    <province>AB</province>
+                </adresse>
+                <telephone>
+                    <maison>789-100-9998</maison>
+                    <!--cellulaire></cellulaire-->
+                    <fax>789-100-9999</fax>
+                </telephone>
+                <date_naissance>1988-01-04</date_naissance>
+            </abonne>
+            <reference>
+                <nom>Toto</nom>
+                <prenom>Tata</prenom>
+                <adresse>
+                    <numero>199</numero>
+                    <rue>rue3</rue>
+                    <ville>ville3</ville>
+                    <code_postal>A0A0A0</code_postal>
+                    <province>AB</province>
+                </adresse>
+                <telephone>
+                    <maison>200-000-0000</maison>
+                    <cellulaire>200-000-0000</cellulaire>
+                    <!--fax></fax-->
+                </telephone>
+                <date_naissance>1966-05-04</date_naissance>				
+            </reference>
+            <emprunts>
+                <livre_emprunt livre_id="QA9123-1232-F">
+                    <date_prevue>2009-09-02</date_prevue>
+                    <!--date_retournee></date_retournee-->
+                </livre_emprunt>
+            </emprunts>
+            <!--retards>
+				<livre_retard livre_id="">
+					<date_prevue></date_prevue>
+					<date_retournee></date_retournee>
+					<montant></montant>
+				</livre_retard>
+			</retards-->
+        </membre>
+    </membres>
+    <livres>
+        <livre numero="QA9123-1232-F">
+            <titre>Learning XML</titre>
+            <auteur>
+                <nom>Erik</nom>
+                <prenom>Kay</prenom>
+                <initiales></initiales>
+            </auteur>
+            <auteur>
+                <nom>Truc</nom>
+                <prenom>Chose</prenom>
+                <initiales></initiales>
+            </auteur>
+            <isbn>isbn0</isbn>
+            <cdrom>oui</cdrom>
+            <photo> learningXML2.gif</photo>
+            <editor>O'Reilly</editor>
+            <nb_pages>395</nb_pages>
+        </livre>
+        <livre numero="QA9123-1999-G">
+            <titre>XML in a nutshell</titre>
+            <auteur>
+                <nom>Rusty</nom>
+                <prenom>Harold</prenom>
+                <initiales>(R)</initiales>
+            </auteur>
+            <auteur>
+                <nom>Scott</nom>
+                <prenom>Means</prenom>
+                <initiales>(W)</initiales>
+            </auteur>
+            <isbn>isbn1</isbn>
+            <cdrom>non</cdrom>
+            <photo>XMLnutshell.gif</photo>
+            <editor>O'Reilly</editor>
+            <!--nb_pages></nb_pages-->
+        </livre>
+    </livres>
+</bibliotheque>
+
+
+

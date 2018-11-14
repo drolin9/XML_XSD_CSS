@@ -1,0 +1,181 @@
+<!--
+Travail TP2 numero 1
+IFT-1152
+Karl Rushford
+code permanent RUSK28078403
+matricule 20002954
+remise le 20 mars 2018
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+	vc:minVersion="1.1">
+
+	<!-- en debut de code mettre les simpleType declaration et globaltype pour pouvoir
+	les reutiliser plus tard
+	-->
+
+	<!--restriction pour la langue -->
+	<xs:simpleType name="typeLanguage">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- restriction pour la ville -->
+	<xs:simpleType name="typeCityId" >
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[P]\d{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- enumeration des villes -->
+	<xs:simpleType name="typeCityName">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Montréal"/>
+			<xs:enumeration value="Québec"/>
+			<xs:enumeration value="Toronto"/>
+			<xs:enumeration value="Ottawa"/>
+			<xs:enumeration value="Vancouver"/>
+			<xs:enumeration value="Edmonton"/>
+			<xs:enumeration value="Regina"/>
+			<xs:enumeration value="Calgary"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- restriction sur la temperature -->
+	<xs:simpleType name="typeTempV">
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="-300"  />
+				<xs:maxInclusive value="300"  />
+			</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="typeTempU">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[C|F]" />  <!-- C ou F -->
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- restriction pour les Uv -->
+	<xs:simpleType name="typeUv">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="16" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!--Restriction pour humidite  -->
+	<xs:simpleType name="typeHumi">
+		<xs:restriction base="xs:integer">
+			<xs:minExclusive value="0"/>
+			<xs:maxExclusive value="100" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- restriction sur presure -->	
+	<xs:simpleType name="typePreV">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5"/>
+			<xs:fractionDigits value="2"/>
+			<xs:pattern value="[\-+]?[0-9]{1,3}[.][0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="typePreU">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="mb"/>
+			<xs:enumeration value="hPa"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<!-- restriction pour conditions-->
+	<xs:simpleType name="typeImg">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="^[A-Za-z*][.gif|.jpg|.png]" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="weather">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="link"/>
+				<xs:element name="language">
+					<!-- cette  element a un attribue -->
+					<xs:complexType>
+						<xs:attribute name="encodingLanguage" type="typeLanguage"/>
+					</xs:complexType>
+				</xs:element>
+				<!-- fin de language avec une restriction -->
+
+				<xs:element name="note">
+					<!-- element a des enfants  -->
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="br">
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="b" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<!-- fin de note -->
+
+				<!--debut de city -->
+				<xs:element name="city" maxOccurs="unbounded">  <!-- pour infini de max -->
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="cityName">
+								<!-- cet element a aussi un attribut id -->
+								<xs:complexType>
+									<xs:attribute name="Id" type="typeCityId"/>
+								</xs:complexType>
+							</xs:element>
+							<!-- fin de sous element cityName -->
+
+
+							<xs:element name="temperature">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="value"  type="typeTempV"/>	
+										<xs:element name="unit"  type="typeTempU"/>	
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<!-- fin de temperature -->
+							
+							<xs:element name="uvIndex"  type="typeUv"  />
+							<xs:element name="humidity" type="typeHumi"   />	
+							
+							<xs:element name="presure" >
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="value" type="typePreV"/>
+										<xs:element name="unit" type="typePreU" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<!-- fin de presure -->
+							
+							<xs:element name="conditions" >
+								<xs:complexType>
+									<!-- attribut optionel avec use -->
+									<xs:attribute name="img" type="typeImg"  use="optional"/>
+								</xs:complexType>	
+							</xs:element>
+							<!-- fin de conditions -->
+							
+						</xs:sequence>
+						<!-- on met les attribut apres la sequence delement -->
+						<!--<xs:attribute name="test" type="typeCityId" /> -->
+					</xs:complexType>
+				</xs:element>
+				<!-- fin de lelement city -->
+
+				<xs:element name="lastUpdate" minOccurs="0" /> <!-- minimum a 0 car 1 par default -->
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- fin de lelement maitre weather  -->
+</xs:schema>

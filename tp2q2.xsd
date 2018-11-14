@@ -1,0 +1,196 @@
+<!--
+Travail TP2 numero 2
+IFT-1152
+Karl Rushford
+code permanent RUSK28078403
+matricule 20002954
+remise le 20 mars 2018
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- en debut de code mettre les simpleType declaration et globaltype pour pouvoir
+	les reutiliser plus tard
+-->
+
+<!-- Global Elements    -->
+
+	<!-- debut de adresse type -->
+	<xs:complexType name="typeAdresse">
+		<xs:sequence>
+			<xs:element name="numero" type="xs:string"  />
+			<xs:element name="rue" type="xs:string"   />
+			<xs:element name="ville" type="xs:string"   />
+			<xs:element name="code_postal" type="typeZip" />	
+			<xs:element name="province" type="typeProvince"  />
+		</xs:sequence>
+	</xs:complexType> 
+	
+	<!-- restriction pour le code postal -->
+	<xs:simpleType name="typeZip" >   
+		<xs:restriction base="xs:string">
+			<!-- verifier que le 4e caractere est optionnel  -->
+			<xs:pattern value="^[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d$" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- restriction pour les provinces -->
+	<xs:simpleType name="typeProvince" >
+		<xs:restriction base="xs:string" >
+			<xs:enumeration value="AB" />
+			<xs:enumeration value="BC" />
+			<xs:enumeration value="MB" />
+			<xs:enumeration value="NB" />
+			<xs:enumeration value="NL" />
+			<xs:enumeration value="NT" />
+			<xs:enumeration value="NS" />
+			<xs:enumeration value="NU" />
+			<xs:enumeration value="ON" />
+			<xs:enumeration value="PE" />
+			<xs:enumeration value="QC" />
+			<xs:enumeration value="SK" />
+			<xs:enumeration value="YT" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- fin de adresse type -->
+
+	<xs:simpleType name="typeNum" >
+		<xs:restriction base="xs:string" >
+			<xs:pattern value="[0-9]{3}-[0-9]{3}-[0-9]{4}"   />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="typeTelephone">
+		<xs:sequence>
+			<xs:element name="maison" type="typeNum" />
+			<xs:element name="cellulaire" type="typeNum" />
+			<xs:element name="fax" type="typeNum" />
+		</xs:sequence>
+	</xs:complexType>
+	<!-- fin de Telephone  -->
+	
+	<xs:complexType name="typePersonne" >
+		<xs:sequence>
+			<xs:element name="nom" type="xs:string"  />
+			<xs:element name="prenom" type="xs:string"   />
+			<xs:element name="adresse" type="typeAdresse" />
+			<xs:element name="telephone" type="typeTelephone" />
+			<xs:element name="date_naissance" type="xs:date"  />
+		</xs:sequence>
+	</xs:complexType >
+	<!--fin de personne -->
+	
+	<xs:simpleType name="typePresent" >
+		<xs:restriction base="xs:string" >
+			<xs:enumeration value="oui" />
+			<xs:enumeration value="non" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- fin de prensent -->
+	
+	<xs:simpleType name="typeMontant">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="4"/>
+			<xs:fractionDigits value="1"/>
+			<xs:pattern value="[\-+]?[0-9]{1,3}[.][0-9]{1}"/>
+			<xs:minExclusive value="0"/>
+			<xs:maxExclusive value="100" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- fin de montant -->
+	
+	
+<!--   fin des variables globales	-->
+	
+<!-- debut du canevas des elements -->	
+	<xs:element name="bibliotheque" >
+		<xs:complexType>
+			<xs:sequence>
+				<!-- debut de la section membres -->
+				<xs:element name="membres" >
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="membre" minOccurs="1" >
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="abonne" type="typePersonne" />
+										<xs:element name="reference" type="typePersonne" />
+										
+										<xs:element name="emprunt" minOccurs="0" >
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="livre_emprunt" >
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="date_prevu" type="xs:date" />
+																<xs:element name="date_retourne" type="xs:date" />
+															</xs:sequence>
+															<!-- on met lattribut apres la sequence -->
+															<xs:attribute name="livre-id" type="xs:string"/> 
+														</xs:complexType>
+
+													</xs:element> <!-- fin de livre-emprunt -->
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>  <!-- fin de lelement emprunt -->
+										
+										<xs:element name="retards"  >
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="livre_retard" >
+														<xs:complexType>				
+															<xs:sequence>
+																<xs:element name="date_prevu" type="xs:date" />
+																<xs:element name="date_retourne" type="xs:date" />
+																<xs:element name="montant" type="typeMontant" /> 
+															</xs:sequence>
+															<!-- on met lattribut apres la sequence -->
+															<xs:attribute name="livre-id" type="xs:string"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element > <!-- fin de lelement retard -->
+										
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element> <!-- fin de lelement membre -->
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element> <!-- fin du maitre membres -->
+				
+				<!-- debut de la section livrea -->
+				<xs:element name="livres" >
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="livre"  minOccurs="1" >
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="titre" type="xs:string" />
+										<xs:element name="auteur" >
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="nom" type="xs:string" />
+													<xs:element name="prenom" type="xs:string" />
+													<xs:element name="initiales" type="xs:string" minOccurs="0" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element> <!-- fin de auteur -->
+										<xs:element name="isbn" type="xs:string" />
+										<xs:element name="cdrom" type="typePresent" />
+										<xs:element name="photo" type="xs:string" minOccurs="0" />
+										<xs:element name="editor" type="xs:string" />
+										<xs:element name="nb_pages" type="xs:positiveInteger" minOccurs="0" />
+									</xs:sequence>
+									<!-- on met lattribut apres la sequence -->
+									<xs:attribute name="numero" type="xs:string" use="required" /> <!--obligatoire -->
+								</xs:complexType>
+							</xs:element> <!-- fin de lelement livres -->	
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element> <!-- fin du maitre livres -->
+				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>  <!-- fin de lelement pricipal bibliotheque -->
+</xs:schema>

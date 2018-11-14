@@ -1,0 +1,178 @@
+membre
+{
+    display:block;
+}
+bibliotheque
+{
+    border-color:black;
+    border-style: solid; 
+    margin-left:15px;
+    
+}
+reference
+{
+    display:block;
+    border-color:gray;
+    border-style: solid;
+    margin-left:25px;
+}
+reference::before
+{
+    content:"Reference: ";
+}
+telephone
+{
+    display:block; 
+    margin-left:25px;
+    
+}
+telephone::before
+{
+    content:"Telephone";
+    display: list-item;
+    list-style-type: circle;
+    list-style-position: inside;
+}
+maison
+{
+    display: list-item;
+    margin-left:25px;
+    list-style-type: circle;
+    list-style-position: inside;
+}
+maison::before
+{
+    content:"maison: ";
+    
+}
+cellulaire
+{
+    display: list-item;
+    margin-left:25px;
+    list-style-type: circle;
+    list-style-position: inside;
+}
+cellulaire::before
+{
+    content:"cellulaire: ";
+    
+}
+
+fax
+{
+    display: list-item;
+    margin-left:15px;
+    list-style-type: circle;
+    list-style-position: inside;
+}
+fax::before
+{
+    content:"fax: ";
+}
+adresse
+{
+    display: list-item;
+    margin-left:25px;
+    list-style-type: circle;
+    list-style-position: inside;
+}
+
+livre
+{
+    display:block;
+    color:blue;
+    border-color:blue;
+    border-style:solid;
+    padding-top:10px;
+    margin-bottom:10px;
+    margin-left:18px;
+}
+date_naissance
+{
+    display: list-item;
+    margin-left:25px;
+    list-style-type: circle;
+    list-style-position: inside;
+}
+retards
+{
+    color:red;
+}
+retards::before
+{
+    content:"Retards: ";
+    margin-left:45px; 
+    display:block;
+}
+province
+{
+    display:none;
+}
+code_postal
+{
+    display:none
+}
+ville
+{
+    display:none;
+}
+rue::before
+{
+    content:"rue ";
+}
+titre::before
+{
+    content:"Livre: ";
+    font-weight: bold;
+    font-size:25px;
+}
+livre_emprunt::before
+{
+    margin-left:45px;
+    content:"Emprunts Livres: " attr(livre_id) ;
+}
+date_prevue::before
+{
+    content:"<Date prevue: ";
+}
+date_retournee::before
+{
+    content:"<Date retournee: ";
+}
+date_prevue::after
+{
+    content:">";
+}
+date_retournee::after
+{
+    content:"> ";
+}
+livre_retard
+{
+    display: list-item;
+    margin-left:55px;
+    list-style-type: circle;
+    list-style-position: inside;
+    
+}
+livre_retard::before
+{
+    content: attr(livre_id) ;
+}
+
+montant::before
+{
+    content:"amende a payer: ";
+}
+montant::after
+{
+    content:"$";
+}
+auteur,isbn,cdrom,photo,nb_pages
+{
+    display:none;
+}
+editor::before
+{
+    content:"Editeur: ";    
+}
